@@ -3,6 +3,20 @@ import Cocoa
 import AVKit
 import AVFoundation
 
+class VAVPlayer: AVPlayer {
+    override func seek(to date: Date) {
+        super.seek(to: date)
+    }
+    
+    override func seek(to date: Date, completionHandler: @escaping (Bool) -> Void) {
+        super.seek(to: date, completionHandler: completionHandler)
+    }
+    
+    override func seek(to time: CMTime, toleranceBefore: CMTime, toleranceAfter: CMTime) {
+        super.seek(to: time, toleranceBefore: toleranceBefore, toleranceAfter: toleranceAfter)
+    }
+}
+
 open class GSAVPlayerViewController: NSViewController {
     
     struct NotificationNames {
@@ -103,7 +117,7 @@ open class GSAVPlayerViewController: NSViewController {
         
         stop()
         
-        self.playerView.player = AVPlayer()
+        self.playerView.player = VAVPlayer()
         self.player?.automaticallyWaitsToMinimizeStalling = false
         
         let playerItem = AVPlayerItem(loader: url)
