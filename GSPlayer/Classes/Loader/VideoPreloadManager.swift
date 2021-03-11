@@ -28,7 +28,7 @@ public class VideoPreloadManager: NSObject {
         if isAutoStart { start() }
     }
     
-    func start() {
+    public func start() {
         guard downloader == nil, waitingQueue.count > 0 else {
             downloader?.resume()
             return
@@ -53,7 +53,7 @@ public class VideoPreloadManager: NSObject {
         }
     }
     
-    func pause() {
+    public func pause() {
         downloader?.suspend()
         didPause?()
         isAutoStart = false
